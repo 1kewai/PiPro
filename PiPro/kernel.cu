@@ -54,6 +54,7 @@ int main() {
     //ホスト側メモリ確保
     //中身はheapに確保する(stack overflow対策)
     double* Host_Leibniz_Array[count];
+
     //countの回数だけ処理を実行
     double re = 0;
     for (int i = 0; i < count; i++) {
