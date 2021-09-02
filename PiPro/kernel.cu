@@ -60,5 +60,5 @@ int main() {
         Host_Leibniz_Array[i] = new double[Acc];//heapに確保
         re += Host_Leibniz(i*Acc, Acc, Acc, Host_Leibniz_Array[i]);
     }
-    printf("%lf\n", re);
+    printf("%1.10lf\n", re);
 }
