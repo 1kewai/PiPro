@@ -53,8 +53,11 @@ int main() {
     //ホスト側メモリ確保
     //中身はheapに確保する(stack overflow対策)
     double* Host_Leibniz_Array[count];
-    Host_Leibniz_Array[0] = new double[Acc];
     //countの回数だけ処理を実行
-    double result = Host_Leibniz(0, Acc, Acc, Host_Leibniz_Array[0]);
-    printf("%lf\n", result);
+    double re = 0;
+    for (int i = 0; i < count; i++) {
+        Host_Leibniz_Array[i] = new double[Acc];//heapに確保
+        re += Host_Leibniz(i*Acc, Acc, Acc, Host_Leibniz_Array[i]);
+    }
+    printf("%lf\n", re);
 }
