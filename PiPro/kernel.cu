@@ -21,10 +21,11 @@ __device__ double Leibniz_One(unsigned long count) {
 }
 
 __global__ void Leibniz_to_Array(double *dst, unsigned int head) {
-    dst[blockIdx.x * blockDim.x + threadIdx.x] = Leibniz_One(blockIdx.x * blockDim.x + threadIdx.x + head);
+    dst[blockIdx.x * blockDim.x + threadIdx.x + head] = Leibniz_One(blockIdx.x * blockDim.x + threadIdx.x + head);
 }
 
 double Host_Leibniz(int start, int size,int Acc, double* Host_Leibniz_Array) {
+    printf("starting %d\n", start);
     //ライプニッツの式を計算する際の各項を保存するためのメモリ確保
     //GPUデバイス側
     double* Device_Leibniz;
@@ -49,7 +50,7 @@ int main() {
     //ライプニッツの式を計算する際のGPUで一度に計算させる項数
     unsigned const int Acc=4096*4;
     //ライプニッツの式をGPUに計算させる回数
-    unsigned const int count = 16;
+    unsigned const int count = 8;
     //ホスト側メモリ確保
     //中身はheapに確保する(stack overflow対策)
     double* Host_Leibniz_Array[count];
