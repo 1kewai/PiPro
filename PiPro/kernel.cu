@@ -25,7 +25,6 @@ __global__ void Leibniz_to_Array(double *dst, unsigned int head) {
 }
 
 double Host_Leibniz(int start, int size,int Acc, double* Host_Leibniz_Array) {
-    printf("starting %d\n", start);
     //ライプニッツの式を計算する際の各項を保存するためのメモリ確保
     //GPUデバイス側
     double* Device_Leibniz;
@@ -61,5 +60,5 @@ int main() {
         Host_Leibniz_Array[i] = new double[Acc];//heapに確保
         re += Host_Leibniz(i*Acc, Acc, Acc, Host_Leibniz_Array[i]);
     }
-    printf("%1.10lf\n", re);
+    printf("%1.15lf\n", re);
 }
